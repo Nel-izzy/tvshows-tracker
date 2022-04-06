@@ -78,7 +78,7 @@ function LandingPage() {
       {MainMovieImage && (
         <MainImage
           image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
-          title={MainMovieImage.original_title}
+          title={MainMovieImage.name}
           text={MainMovieImage.overview}
         />
       )}

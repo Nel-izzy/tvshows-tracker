@@ -72,7 +72,7 @@ function MovieDetailPage(props) {
       {!LoadingForMovie ? (
         <MainImage
           image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
-          title={Movie.original_title}
+          title={Movie.name}
           text={Movie.overview}
         />
       ) : (

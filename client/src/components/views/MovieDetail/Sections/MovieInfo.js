@@ -16,7 +16,14 @@ function MovieInfo(props) {
       <Descriptions.Item label="Seasons">
         {movie.number_of_seasons}
         {"  "}
-        <Link to={`/movie/${movie.id}/seasons`}>(View All)</Link>
+        <Link
+          to={{
+            pathname: `/movie/${movie.id}/seasons`,
+            state: movie.seasons,
+          }}
+        >
+          (View All)
+        </Link>
       </Descriptions.Item>
       <Descriptions.Item label="runtime">
         {movie.episode_run_time}
