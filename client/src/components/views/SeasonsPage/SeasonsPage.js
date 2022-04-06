@@ -1,6 +1,6 @@
 import React from "react";
 
-const SeasonsPage = () => {
+const SeasonsPage = (props) => {
   return <div>Hello Seasons???</div>;
 };
 
