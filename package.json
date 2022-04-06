@@ -1,0 +1,29 @@
+{
+  "name": "tmdb-movietracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js",
+    "frontend": "npm run front --prefix client",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "react-redux": "^7.2.8",
+    "socket.io": "^4.4.1"
+  }
+}
