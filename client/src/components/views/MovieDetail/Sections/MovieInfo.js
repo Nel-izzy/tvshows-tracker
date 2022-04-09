@@ -19,7 +19,7 @@ function MovieInfo(props) {
         <Link
           to={{
             pathname: `/movie/${movie.id}/seasons`,
-            state: movie.seasons,
+            state: movie,
           }}
         >
           (View All)

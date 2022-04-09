@@ -9,6 +9,8 @@ import GridCards from "../../commons/GridCards";
 import MainImage from "../../views/LandingPage/Sections/MainImage";
 import MovieInfo from "./Sections/MovieInfo";
 import Favorite from "./Sections/Favorite";
+import Viewed from "./Sections/Viewed";
+
 function MovieDetailPage(props) {
   console.log(props);
   const movieId = props.match.params.movieId;
@@ -83,6 +85,12 @@ function MovieDetailPage(props) {
       <div style={{ width: "85%", margin: "1rem auto" }}>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Favorite
+            movieInfo={Movie}
+            movieId={movieId}
+            userFrom={localStorage.getItem("userId")}
+          />
+
+          <Viewed
             movieInfo={Movie}
             movieId={movieId}
             userFrom={localStorage.getItem("userId")}

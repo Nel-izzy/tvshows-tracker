@@ -10,6 +10,10 @@ import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer";
 import MovieDetail from "./views/MovieDetail/MovieDetail";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
+import ViewedPage from "./views/ViewedPage/ViewedPage";
+import SeasonDetail from "./views/SeasonDetail/Section/SeasonDetail";
+import EpisodesPage from "./views/EpisodesPage/EpisodesPage";
+import EpisodeDetail from "./views/EpisodeDetail/EpisodeDetail";
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -19,6 +23,12 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+
+          <Route
+            exact
+            path="/movie/:movieId"
+            component={Auth(MovieDetail, null)}
+          />
           <Route
             exact
             path="/movie/:movieId/seasons"
@@ -26,10 +36,21 @@ function App() {
           />
           <Route
             exact
-            path="/movie/:movieId"
-            component={Auth(MovieDetail, null)}
+            path="/movie/:movieId/seasons/:seasonId"
+            component={Auth(SeasonDetail, null)}
+          />
+          <Route
+            exact
+            path="/movie/:movieId/seasons/:seasonNumber/episodes"
+            component={Auth(EpisodesPage, null)}
+          />
+          <Route
+            exact
+            path="/movie/:movieId/seasons/:seasonNumber/episodes/:episodeId"
+            component={Auth(EpisodeDetail, null)}
           />
           <Route exact path="/favorite" component={Auth(FavoritePage, null)} />
+          <Route exact path="/viewed" component={Auth(ViewedPage, null)} />
         </Switch>
       </div>
       <Footer />

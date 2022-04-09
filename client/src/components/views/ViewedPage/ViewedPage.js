@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Popover, Button } from "antd";
 import axios from "axios";
-import "./favorite.css";
+//import "./viewed.css";
 import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../Config";
 
 const { Title } = Typography;
 
-function FavoritePage() {
+function ViewedPage() {
   const user = useSelector((state) => state.user);
 
-  const [Favorites, setFavorites] = useState([]);
+  const [views, setViews] = useState([]);
   const [Loading, setLoading] = useState(true);
   let variable = { userFrom: localStorage.getItem("userId") };
 
   useEffect(() => {
-    fetchFavoredMovie();
+    fetchViewedMovie();
   }, []);
 
-  const fetchFavoredMovie = () => {
-    axios.post("/api/favorite/getFavoredMovie", variable).then((response) => {
+  const fetchViewedMovie = () => {
+    axios.post("/api/viewed/getViewedMovie", variable).then((response) => {
       if (response.data.success) {
-        console.log(response.data.favorites);
-        setFavorites(response.data.favorites);
+        console.log(response.data.views);
+        setViews(response.data.views);
         setLoading(false);
       } else {
         alert("Failed to get subscription videos");
@@ -36,22 +36,20 @@ function FavoritePage() {
       userFrom: userFrom,
     };
 
-    axios
-      .post("/api/favorite/removeFromFavorite", variables)
-      .then((response) => {
-        if (response.data.success) {
-          fetchFavoredMovie();
-        } else {
-          alert("Failed to Remove From Favorite");
-        }
-      });
+    axios.post("/api/viewed/removeFromViewed", variables).then((response) => {
+      if (response.data.success) {
+        fetchViewedMovie();
+      } else {
+        alert("Failed to Remove From viewed");
+      }
+    });
   };
 
-  const renderCards = Favorites.map((favorite, index) => {
+  const renderCards = views.map((viewed, index) => {
     const content = (
       <div>
-        {favorite.moviePost ? (
-          <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
+        {viewed.moviePost ? (
+          <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${viewed.moviePost}`} />
         ) : (
           "no image"
         )}
@@ -60,14 +58,14 @@ function FavoritePage() {
 
     return (
       <tr key={index}>
-        <Popover content={content} title={`${favorite.movieTitle}`}>
-          <td>{favorite.movieTitle}</td>
+        <Popover content={content} title={`${viewed.movieTitle}`}>
+          <td>{viewed.movieTitle}</td>
         </Popover>
 
-        <td>{favorite.movieRunTime} mins</td>
+        <td>{viewed.movieRunTime} mins</td>
         <td>
           <button
-            onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}
+            onClick={() => onClickDelete(viewed.movieId, viewed.userFrom)}
           >
             {" "}
             Remove{" "}
@@ -79,7 +77,7 @@ function FavoritePage() {
 
   return (
     <div style={{ width: "85%", margin: "3rem auto" }}>
-      <Title level={2}> Favorite Movies By Me </Title>
+      <Title level={2}> Movies viewed By Me </Title>
       <hr />
       {user.userData && !user.userData.isAuth ? (
         <div
@@ -102,8 +100,8 @@ function FavoritePage() {
             <thead>
               <tr>
                 <th>Movie Title</th>
-                <th>Episode RunTime</th>
-                <td>Remove from favorites</td>
+                <th>Movie RunTime</th>
+                <td>Remove from views</td>
               </tr>
             </thead>
             <tbody>{renderCards}</tbody>
@@ -114,4 +112,4 @@ function FavoritePage() {
   );
 }
 
-export default FavoritePage;
+export default ViewedPage;

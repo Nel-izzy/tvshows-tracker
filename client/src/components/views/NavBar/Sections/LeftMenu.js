@@ -1,6 +1,5 @@
-import React from 'react';
-import { Menu } from 'antd';
-
+import React from "react";
+import { Menu } from "antd";
 
 function LeftMenu(props) {
   return (
@@ -8,8 +7,11 @@ function LeftMenu(props) {
       <Menu.Item key="favorite">
         <a href="/favorite">Favorite</a>
       </Menu.Item>
+      <Menu.Item key="viewed">
+        <a href="/viewed">Viewed</a>
+      </Menu.Item>
     </Menu>
-  )
+  );
 }
 
-export default LeftMenu
+export default LeftMenu;
