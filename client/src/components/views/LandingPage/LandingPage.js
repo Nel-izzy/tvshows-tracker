@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Typography, Row, Button } from "antd";
 import {
   API_URL,
@@ -9,8 +9,12 @@ import {
 } from "../../Config";
 import MainImage from "./Sections/MainImage";
 import GridCard from "../../commons/GridCards";
+import { SearchContext } from "../../../context";
+
 const { Title } = Typography;
 function LandingPage() {
+  const { searchedShows } = useContext(SearchContext);
+
   const buttonRef = useRef(null);
 
   const [Movies, setMovies] = useState([]);
@@ -35,7 +39,9 @@ function LandingPage() {
         // console.log('Movies',...Movies)
         // console.log('result',...result.results)
         setMovies([...Movies, ...result.results]);
-        setMainMovieImage(MainMovieImage || result.results[0]);
+        setMainMovieImage(
+          MainMovieImage || searchedShows[0] || result.results[0]
+        );
         setCurrentPage(result.page);
       }, setLoading(false))
       .catch((error) => console.error("Error:", error));
@@ -69,7 +75,7 @@ function LandingPage() {
     if (windowBottom >= docHeight - 1) {
       // loadMoreItems()
       //console.log("clicked");
-      buttonRef.current.click();
+      buttonRef.current && buttonRef.current.click();
     }
   };
 
@@ -88,20 +94,33 @@ function LandingPage() {
 
         <hr />
         <Row gutter={[16, 16]}>
-          {Movies &&
-            Movies.map((movie, index) => (
-              <React.Fragment key={index}>
-                <GridCard
-                  image={
-                    movie.poster_path
-                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                      : null
-                  }
-                  movieId={movie.id}
-                  movieName={movie.original_title}
-                />
-              </React.Fragment>
-            ))}
+          {searchedShows.length > 0
+            ? searchedShows.map((movie, index) => (
+                <React.Fragment key={index}>
+                  <GridCard
+                    image={
+                      movie.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                        : null
+                    }
+                    movieId={movie.id}
+                    movieName={movie.original_title}
+                  />
+                </React.Fragment>
+              ))
+            : Movies.map((movie, index) => (
+                <React.Fragment key={index}>
+                  <GridCard
+                    image={
+                      movie.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                        : null
+                    }
+                    movieId={movie.id}
+                    movieName={movie.original_title}
+                  />
+                </React.Fragment>
+              ))}
         </Row>
 
         {Loading && <div>Loading...</div>}

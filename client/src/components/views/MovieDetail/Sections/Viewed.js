@@ -75,7 +75,7 @@ function Viewed(props) {
     <>
       <Button onClick={onClickViewed}>
         {" "}
-        {!Viewed ? "Add to Viewed" : "Not Viewed"} {ViewedNumber}
+        {!Viewed ? "Mark as Viewed" : "Not Viewed"} {ViewedNumber}
       </Button>
     </>
   );
