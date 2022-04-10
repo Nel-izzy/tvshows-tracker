@@ -7,7 +7,9 @@ import MainImage from "../LandingPage/Sections/MainImage";
 const SeasonsPage = (props) => {
   const [seasons, setSeasons] = useState(props.location.state.seasons);
   const movieId = props.match.params.movieId;
-  const { backdrop_path, name, overview } = props.location.state;
+  const { backdrop_path, name, overview, episode_run_time } =
+    props.location.state;
+  console.log(props);
 
   return (
     <div style={{ width: "100%", margin: "0" }}>
@@ -27,6 +29,8 @@ const SeasonsPage = (props) => {
                       ? `${IMAGE_BASE_URL}${POSTER_SIZE}${season.poster_path}`
                       : null
                   }
+                  movieName={name}
+                  movieRuntime={episode_run_time}
                   movieId={movieId}
                   seasonId={season.id}
                   seasonName={season.name}

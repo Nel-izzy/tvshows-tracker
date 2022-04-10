@@ -13,8 +13,10 @@ import Episode from "./EpisodePage";
 
 const EpisodesPage = (props) => {
   const { movieId, seasonNumber } = props.match.params;
+  console.log(props);
 
-  const { seasonId, image, seasonName } = props.location.state;
+  const { seasonId, image, seasonName, movieName, movieRuntime } =
+    props.location.state;
   const [episodes, setEpisodes] = useState([]);
 
   useEffect(() => {
@@ -26,7 +28,6 @@ const EpisodesPage = (props) => {
     fetch(endpoint)
       .then((result) => result.json())
       .then((result) => {
-        console.log(result);
         setEpisodes(result.episodes);
       });
   }
@@ -35,8 +36,8 @@ const EpisodesPage = (props) => {
     <div style={{ width: "100%", margin: "0" }}>
       <MainImage
         image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${image}`}
-        title={seasonName || null}
-        // text={overview || null}
+        title={movieName}
+        text={seasonName}
       />
       <div style={{ width: "85%", margin: "1rem auto" }}>
         <Row gutter={[16, 16]}>
@@ -50,6 +51,9 @@ const EpisodesPage = (props) => {
                       : image
                   }
                   movieId={movieId}
+                  movieName={movieName}
+                  movieRuntime={movieRuntime}
+                  seasonName={seasonName}
                   seasonId={seasonId}
                   episodeId={episode.id}
                   overview={episode.overview}

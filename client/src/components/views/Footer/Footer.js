@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "antd";
 
 function Footer() {
   return (
@@ -13,10 +12,7 @@ function Footer() {
         fontSize: "1rem",
       }}
     >
-      <p>
-        {" "}
-        TMDB MovieShows <Icon type="smile" />
-      </p>
+      <p> Copyright &copy; TMDB TVShows {new Date().getFullYear()}</p>
     </div>
   );
 }
