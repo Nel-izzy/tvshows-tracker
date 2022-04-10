@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 function Viewed(props) {
   const user = useSelector((state) => state.user);
-  console.log(props);
 
   const movieId = props.episodeId;
   const userFrom = props.userFrom;

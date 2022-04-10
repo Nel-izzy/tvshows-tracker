@@ -3,7 +3,6 @@ import { Descriptions } from "antd";
 import { Link } from "react-router-dom";
 
 const SeasonInfo = (props) => {
-  //console.log(props);
   const [season, setSeason] = useState(props.location.state);
   return (
     <div style={{ width: "85%", margin: "1rem auto" }}>

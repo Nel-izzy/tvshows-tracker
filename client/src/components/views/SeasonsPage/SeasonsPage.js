@@ -1,5 +1,5 @@
-import { Col, Row } from "antd";
-import React, { useEffect, useState } from "react";
+import { Row } from "antd";
+import React, { useState } from "react";
 import Season from "../SeasonPage/SeasonPage";
 import { IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from "../../Config";
 import MainImage from "../LandingPage/Sections/MainImage";
@@ -9,7 +9,6 @@ const SeasonsPage = (props) => {
   const movieId = props.match.params.movieId;
   const { backdrop_path, name, overview, episode_run_time } =
     props.location.state;
-  console.log(props);
 
   return (
     <div style={{ width: "100%", margin: "0" }}>

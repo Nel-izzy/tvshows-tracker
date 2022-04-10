@@ -13,7 +13,6 @@ import Episode from "./EpisodePage";
 
 const EpisodesPage = (props) => {
   const { movieId, seasonNumber } = props.match.params;
-  console.log(props);
 
   const { seasonId, image, seasonName, movieName, movieRuntime } =
     props.location.state;

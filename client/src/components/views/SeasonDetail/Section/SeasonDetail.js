@@ -7,7 +7,7 @@ import Viewed from "./Viewed";
 const SeasonDetail = (props) => {
   const { image, seasonName, seasonId, episodeCount, movieName, movieRuntime } =
     props.location.state;
-  console.log(props);
+
   return (
     <div style={{ width: "100%", margin: "0" }}>
       <MainImage
