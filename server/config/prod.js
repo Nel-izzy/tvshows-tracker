@@ -1,3 +1,4 @@
 module.exports = {
-    mongoURI:process.env.MONGO_URI
-}
+  mongoURI:
+    "mongodb+srv://nelson:nelson@cluster0.khuf4.mongodb.net/tvshowstracker?retryWrites=true&w=majority",
+};
